@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+      <!-- Bootstrap 5.3 -->
+      <link href="css/bootstrap.min.css" rel="stylesheet"/>
+      <!-- AOS Animate on Scroll -->
+      <link href="css/aos.css" rel="stylesheet"/>
+      <!-- Swiper -->
+      <link href="css/swiper-bundle.min.css" rel="stylesheet"/>
+      <!-- all min css -->
+      <link rel="stylesheet" href="css/all.min.css"/>
+      <!-- magnific CSS -->
+      <link rel="stylesheet" href="css/magnific-popup.css"/>
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar navbar-expand-lg" id="nav">
+        <div class="container">            
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="/sarab/index.html">Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/sarab/login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/sarab/admin.html">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <a href="create.html">Create</a>
+
+    <div id="productModal" class="modal productModal">
+        <div class="modal-content modal-inner">
+            <h3>Show Data Product</h3>
+            <form id="formShow">
+                <div id="data-form">
+                    <h1>xxx</h1>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="updateModal" class="modal updateModal">
+        <div class="modal-content">
+            <h3>Update Data Product</h3>
+            <form id="formEdit">
+                <div id="data-update">
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         ADMIN PANEL
+         ============================================================ -->
+      <div class="admin">
+         <h1>Admin Panel</h1>
+         <table border="2">
+            <thead>
+                <tr>
+                    <th>Name Product</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Action</th>                    
+                </tr>
+            </thead>
+            <tbody id="data-admin">                  
+            </tbody>
+        </table>
+      </div>
+
+      <div id="data-container" style="display: none;" class="row g-4">Memuat data...</div>
+
+    <script src="app.js"></script>
+    <script src="main.js"></script>
+    <script src="action.js"></script>
+	<!-- jQuery -->
+      <script src="js/jquery-3.7.1.min.js"></script>
+      <!-- Bootstrap 5 -->
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- AOS -->
+      <script src="js/aos.js"></script>
+      <!-- Swiper -->
+      <script src="js/swiper-bundle.min.js"></script>
+      <!-- CounterUp -->
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <!-- Main js -->
+      <script src="js/main.js"></script>      
+            
+       <script>
+        function productModal() {
+            console.log('here....')
+            const cm = document.getElementById('productModal');
+               cm.style.display = 'flex';
+               console.log('test noneeeee')            
+        }
+
+        function closeModalShow() {
+            const cm = document.getElementById('productModal');
+            cm.style.display = 'none';
+        }
+
+
+        function updateModal() {
+            const cm = document.getElementById('updateModal');
+            cm.style.display = 'flex';             
+        }
+
+        function closeModalEdit() {
+            const cm = document.getElementById('updateModal');
+            cm.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

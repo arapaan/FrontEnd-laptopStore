@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="Sarab">
+      <meta name="description" content="Sarab - Fast Food & Restaurant HTML Template">
+      <title>Sarab - Fast Food & Restaurant HTML Template</title>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+      <!-- Bootstrap 5.3 -->
+      <link href="css/bootstrap.min.css" rel="stylesheet"/>
+      <!-- AOS Animate on Scroll -->
+      <link href="css/aos.css" rel="stylesheet"/>
+      <!-- Swiper -->
+      <link href="css/swiper-bundle.min.css" rel="stylesheet"/>
+      <!-- all min css -->
+      <link rel="stylesheet" href="css/all.min.css"/>
+      <!-- magnific CSS -->
+      <link rel="stylesheet" href="css/magnific-popup.css"/>
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="css/style.css" />
+   </head>
+   <body>
+      <!-- ============================================================
+         NAVBAR
+         ============================================================ -->
+      <nav class="navbar navbar-expand-lg" id="nav">
+         <div class="container">            
+            <div class="collapse navbar-collapse" id="navmenu">
+               <ul class="navbar-nav mx-auto">
+                  <li class="nav-item"><a class="nav-link active" href="/sarab/index.html">Product</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/sarab/login.html">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/sarab/admin.html">Admin</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div style="display: none;" id="cartModal" class="cart">
+         <h4>Cart</h4>
+         <div id="data-cart">                        
+            Memuat data...
+         </div>
+
+         <button class="btn-submit btn-checkout">
+            Checkout
+         </button>
+      </div>
+
+      <button class="circle">
+         <a onclick="cartModal()">Keranjang</a>
+      </button>
+      <!-- ============================================================
+         MENU � FIX 3 (filter works) + FIX 4 (plus opens popup)
+         ============================================================ -->
+      <section id="menu">
+         <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+               <h2 class="stitle">Our Delicious <span>Menu</span></h2>
+               <div class="sline"></div>
+            </div>
+            <div class="row g-4" id="mgrid">
+               <div id="data-container" class="row g-4">Memuat data...</div>                              
+            </div>
+         </div>
+      </section>  
+      
+      <div style="display: none;" class="admin">
+         <h1>Admin Panel</h1>
+         <table border="2">
+            <tr>
+                <th>Nama Product</th>
+                <th>Harga</th>
+                <th>stock</th>
+            </tr>
+            <tr id="data-admin">
+                Memuat data...
+            </tr>        
+        </table>
+      </div>            
+
+      <!-- ============================================================
+         FIX 4 � MENU DETAIL POPUP MODAL
+         ============================================================ -->
+      <div id="menuPop">
+         <div class="mpbox">
+            <button class="mpclose" id="mpClose"><i class="fas fa-times"></i></button>
+            <div class="mpimg"><img id="mpImg" src="" alt=""/></div>
+            <div class="mpbody">
+               <div id="mpCat"></div>
+               <div id="mpTitle"></div>
+               <div id="mpStars"></div>
+               <div id="mpDesc"></div>
+               <div id="mpPrice"></div>
+               <div class="mpmeta" id="mpMeta"></div>
+               <div class="mpqty">
+                  <button class="mpqbtn" id="mpMinus">-</button>
+                  <span class="mpqnum" id="mpQnum">1</span>
+                  <button class="mpqbtn" id="mpPlus">+</button>
+                  <span style="font-size:.82rem;color:#aaa;margin-left:9px;">portion</span>
+               </div>
+               <div class="mptags" id="mpTags"></div>
+               <button class="mpaddcart" id="mpAddCart"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
+            </div>
+         </div>
+      </div>      
+      <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+      <script src="app.js"></script>
+      
+      <script src="cart.js"></script>
+      <script src="main.js"></script>
+	<!-- jQuery -->
+      <script src="js/jquery-3.7.1.min.js"></script>
+      <!-- Bootstrap 5 -->
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- AOS -->
+      <script src="js/aos.js"></script>
+      <!-- Swiper -->
+      <script src="js/swiper-bundle.min.js"></script>
+      <!-- CounterUp -->
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <!-- Main js -->
+      <script src="js/main.js"></script>
+      <!-- <script>
+         const btnEl = document.querySelector('button');
+         const inputEl = document.querySelector('input');
+         btnEl.addEventListener('click', () => {
+            const inputValue =  inputEl.value;
+            console.log(inputValue);
+         });
+      </script> -->
+      <script>
+         // function addProduct() {
+         //    console.log(1)
+         // }
+         
+         function cartModal() {            
+            const cm = document.getElementById('cartModal');
+            if (cm.style.display === 'none') {
+               cm.style.display = 'block';
+            } else {
+               cm.style.display = 'none';
+            }
+         }
+      </script>
+   </body>
+</html>
