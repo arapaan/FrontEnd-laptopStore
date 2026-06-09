@@ -36,6 +36,7 @@ const clickHandler = () => {
             localStorage.setItem('user', JSON.stringify(data.user));
             localStorage.getItem('user')
 
+            window.location.href = 'index.html';
         } catch (error) {
             console.error('Fetch Failed:', error.message);
             document.getElementById('data-container').innerHTML = 'Failed to load data.';

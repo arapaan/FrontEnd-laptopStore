@@ -293,6 +293,8 @@ const clickHandler = () => {
 
             const { data } = await api.json()            
             console.log('masuk 5')
+
+            window.location.href = 'index.html';
         } catch (error) {
             console.error('Fetch Failed:', error.message);            
         }    
