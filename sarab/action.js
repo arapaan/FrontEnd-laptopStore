@@ -1,44 +1,58 @@
 setTimeout(() => {
     // Delete Action
     const btnDl = document.querySelectorAll('.delete-product');
+    const modal = document.getElementById('modalKonfirmasi');
+    const btnBatal = document.getElementById('btnBatal');
+    const btnYa = document.getElementById('btnYa');
     console.log(btnDl);
     let deleteId = null;
-    btnDl.forEach(dl => {
+    btnDl.forEach(dl => {        
+
         dl.addEventListener('click', (Event) => {
             // get id
-            deleteId = event.currentTarget.dataset.id;
-            console.log('EventListenerId', deleteId);
+            modal.classList.add('aktif');
+            deleteId = event.currentTarget.dataset.id;                        
 
-            // fetch delete
-            async function deleteAction() {
-                try {
-                    //get token
-                    const token = localStorage.getItem('jwt_token');
-                    console.log(token)
+            btnBatal.addEventListener('click', () => {
+                modal.classList.remove('aktif');
+            });
 
-                    // fetch api
-                    const api = await fetch(`http://127.0.0.1:8000/api/product/${deleteId.toString()}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization':  `Bearer ${token}`
+            btnYa.addEventListener('click', () => {            
+                console.log('EventListenerId', deleteId);
+
+                // fetch delete
+                async function deleteAction() {
+                    try {
+                        //get token
+                        const token = localStorage.getItem('jwt_token');
+                        console.log(token)
+
+                        // fetch api
+                        const api = await fetch(`http://127.0.0.1:8000/api/product/${deleteId.toString()}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization':  `Bearer ${token}`
+                            }
+                        })
+
+                        // check response
+                        if(!api.ok) {
+                            throw new Error(`HTTP error! Status: ${api.status}`);
                         }
-                    })
 
-                    // check response
-                    if(!api.ok) {
-                        throw new Error(`HTTP error! Status: ${api.status}`);
+                        // get response
+                        const { data } = await api.json();
+                        location.reload();
+                    } catch (error) {
+                        // show error
+                        console.log('Fetch Failed', error.message);
                     }
-
-                    // get response
-                    const { data } = await api.json();
-                } catch (error) {
-                    // show error
-                    console.log('Fetch Failed', error.message);
                 }
-            }
 
-            deleteAction();
+                deleteAction();
+                modal.classList.remove('aktif');
+            });            
         });
     });
 
@@ -146,7 +160,7 @@ setTimeout(() => {
 
                     const { data } = await api.json();
 
-                    RenderUpdate(data);
+                    RenderUpdate(data);                    
                 } catch (error) {
                     console.error('Fetch Failed:', error.message);
                     document.getElementById('data-update').innerHTML = 'Failed to load data.';
@@ -179,11 +193,11 @@ setTimeout(() => {
                 </div>
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="text" value="${product.price}"  id="price">
+                    <input type="number" value="${product.price}"  id="price">
                 </div>
                 <div class="form-group">
                     <label for="stock">Stock:</label>
-                    <input type="text" value="${product.stock}" id="stock">
+                    <input type="number" value="${product.stock}" id="stock">
                 </div>
                 <div class="form-group">
                     <label for="image"><b>Image</b></label>
@@ -237,9 +251,27 @@ setTimeout(() => {
                     }            
                     console.log('masuk 4')
 
-                    const { data } = await api.json()            
+                    const { data } = await api.json()   
+                    swal({
+                        title: "Success!",
+                        text: "Product created successfully!",
+                        icon: "success",
+                        button: "OK",
+                    })
+                    .then(() => {
+                        location.reload();
+                    });                      
                     console.log('masuk 5')
                 } catch (error) {
+                    swal({
+                        title: "Error!",
+                        text: `Failed to update product: ${error.message}`,
+                        icon: "error",
+                        button: "OK",
+                    })
+                    .then(() => {
+                        location.reload();
+                    });              
                     console.error('Fetch Failed:', error.message);            
                 }    
             }
@@ -293,9 +325,25 @@ const clickHandler = () => {
 
             const { data } = await api.json()            
             console.log('masuk 5')
-
-            window.location.href = 'index.html';
-        } catch (error) {
+            swal({
+                title: "Success!",
+                text: "Product created successfully!",
+                icon: "success",
+                button: "OK",
+            })
+            .then(() => {
+                window.location.href = 'index.html';
+            });
+        } catch (error) {   
+            swal({
+                        title: "Error!",
+                        text: `Failed to create product: ${error.message}`,
+                        icon: "error",
+                        button: "OK",
+                    })
+                    .then(() => {
+                        window.location.href = 'index.html';
+                    });            
             console.error('Fetch Failed:', error.message);            
         }    
     }
