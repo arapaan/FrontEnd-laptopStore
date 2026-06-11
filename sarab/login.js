@@ -1,3 +1,10 @@
+(function() {
+    const userSession = localStorage.getItem('jwt_token');
+
+    if (userSession) {
+        window.location.href = '/sarab/index.html';
+    }
+})();
 const btnEl = document.querySelector('.login');
 
 const clickHandler = () => {
