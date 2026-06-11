@@ -97,7 +97,7 @@ function RenderMenu(products) {
                 <div class="col-sm-6 col-lg-4 mwrap" data-c="burgers" data-aos="fade-up">
                   <div class="mcard"
                      <div class="mimg">
-                        <img src=${product.image_url} alt=${product.image_url}/>
+                        <img src=${product.image_url || 'img/assets/null-img.png'} alt=${product.image_url}/>
                      </div>
                      <div class="mbody">
                         <div class="mtit">${product.name}</div>
@@ -132,7 +132,7 @@ function RenderAdmin(Products) {
             <td>${product.stock}</td>
             <td class="action">
                 <button type="submit" data-id="${product.id}" id="updateModal" class="edit-product" onclick="updateModal()">Edit</button>
-                <button type="submit" data-id="${product.id}" id="delete" class="delete-product">Hapus</button>
+                <button type="submit" data-id="${product.id}" id="btnHapus" class="delete-product">Hapus</button>
                 <button type="submit" data-id="${product.id}" id="productModal" class="show-product" onclick="productModal()">Lihat</button>
             </td>
         </tr>
