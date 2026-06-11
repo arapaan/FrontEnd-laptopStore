@@ -22,20 +22,8 @@
       <link rel="stylesheet" href="css/style.css" />
    </head>
    <body>
-      <!-- ============================================================
-         NAVBAR
-         ============================================================ -->
-      <nav class="navbar navbar-expand-lg" id="nav">
-         <div class="container">            
-            <div class="collapse navbar-collapse" id="navmenu">
-               <ul class="navbar-nav mx-auto">
-                  <li class="nav-item"><a class="nav-link active" href="/sarab/index.html">Product</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/sarab/login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/sarab/admin.html">Admin</a></li>
-               </ul>
-            </div>
-         </div>
-      </nav>
+      <div id="navSidebar"></div>                  
+
       <div style="display: none;" id="cartModal" class="cart">
          <h4>Cart</h4>
          <div id="data-cart">                        
@@ -56,7 +44,7 @@
       <section id="menu">
          <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
-               <h2 class="stitle">Our Delicious <span>Menu</span></h2>
+               <h2 class="stitle">Our <span>Menu</span></h2>
                <div class="sline"></div>
             </div>
             <div class="row g-4" id="mgrid">
@@ -100,7 +88,7 @@
                   <span style="font-size:.82rem;color:#aaa;margin-left:9px;">portion</span>
                </div>
                <div class="mptags" id="mpTags"></div>
-               <button class="mpaddcart" id="mpAddCart"><i class="fas fa-shopping-cart"></i>Add to Cart</button>
+               <button class="mpaddcart" id="mpAddCart"><i class="fas fa-shopping-cart"></i>Add to Cart</button>               
             </div>
          </div>
       </div>      
@@ -121,6 +109,8 @@
       <script src="js/jquery.magnific-popup.min.js"></script>
       <!-- Main js -->
       <script src="js/main.js"></script>
+      <!-- Nav -->
+      <script src="nav.js"></script>
       <!-- <script>
          const btnEl = document.querySelector('button');
          const inputEl = document.querySelector('input');
