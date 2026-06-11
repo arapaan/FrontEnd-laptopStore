@@ -40,6 +40,8 @@ const clickHandler = () => {
             console.log('id_cart')
             localStorage.setItem('jwt_token', data.jwt_token);
             localStorage.getItem('jwt_token')
+            localStorage.setItem('expires_at', data.expires_at);
+            // console.log('Expires At: ', localStorage.getItem('expires_at'));
             localStorage.setItem('user', JSON.stringify(data.user));
             localStorage.getItem('user')
 

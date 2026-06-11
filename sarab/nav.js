@@ -3,6 +3,31 @@
     //     location.reload();
     // }, 5000);
 
+    const now = new Date();
+    const formatDate = new Intl.DateTimeFormat('en-CA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    }).format(now);
+    
+    const hasil = formatDate.replace(',', ''); 
+
+    console.log(hasil);
+    console.log('Expires At: ', localStorage.getItem('expires_at'))
+
+    $expiresAt = localStorage.getItem('expires_at');
+    
+    if ($expiresAt && hasil > $expiresAt) {
+        localStorage.removeItem('jwt_token');
+        localStorage.removeItem('expires_at');
+        localStorage.removeItem('user');
+        window.location.href = '/sarab/login.html';
+    }
+
 
     // show navbar
     const container = document.getElementById('navSidebar');

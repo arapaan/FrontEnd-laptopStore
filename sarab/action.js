@@ -4,7 +4,7 @@ setTimeout(() => {
     const modal = document.getElementById('modalKonfirmasi');
     const btnBatal = document.getElementById('btnBatal');
     const btnYa = document.getElementById('btnYa');
-    console.log(btnDl);
+    // console.log(btnDl);
     let deleteId = null;
     btnDl.forEach(dl => {        
 
@@ -18,14 +18,14 @@ setTimeout(() => {
             });
 
             btnYa.addEventListener('click', () => {            
-                console.log('EventListenerId', deleteId);
+                // console.log('EventListenerId', deleteId);
 
                 // fetch delete
                 async function deleteAction() {
                     try {
                         //get token
                         const token = localStorage.getItem('jwt_token');
-                        console.log(token)
+                        // console.log(token)
 
                         // fetch api
                         const api = await fetch(`http://127.0.0.1:8000/api/product/${deleteId.toString()}`, {
@@ -61,7 +61,7 @@ setTimeout(() => {
 
     // Show Action
     const btnSh = document.querySelectorAll('.show-product');
-    console.log(btnSh);
+    // console.log(btnSh);
     let showId = null;
     btnSh.forEach(sh => {
         sh.addEventListener('click', (event) => {
