@@ -44,24 +44,34 @@ setTimeout(() => {
         });
 
 let dataParams = localStorage.getItem('id_cart');
+console.log('id_cart: -> ', dataParams)
 const dataCart = localStorage.getItem('user');
 // console.log('userss', JSON.parse(dataCart));
 
-const getCart = `http://127.0.0.1:8000/api/cart/${dataParams.toString()}`;
-const addCart = `http://127.0.0.1:8000/api/cart`;
+const addCart = `http://127.0.0.1:8000/api/cart/${dataParams.toString()}`;
+// const getCart = `http://127.0.0.1:8000/api/cart`;
 const getProducts = `http://127.0.0.1:8000/api/product`;
 
 const checkout = `http://127.0.0.1:8000/api/checkout/${dataParams.toString()}`;
 
 async function getCartData() {
     try {
-        const api = await fetch(getCart);        
+        const api = await fetch(addCart);        
 
-        if(!api) {
-            throw new Error('No product data available yet');
-        }
+        // if(!api) {
+        //     throw new Error('No product data available yet');
+        // }
 
+        if(!api.ok) {
+            const errorData = await api.json(); 
+            console.log('errorData: ', errorData)
+            throw new Error(errorData.message || 'An error occurred on the server');
+        } 
+        
         const { data } = await api.json();
+        console.log('bruh: ', data)
+
+
         RenderCart(data)
         // console.log('Cart Data:', data)
 
@@ -69,7 +79,13 @@ async function getCartData() {
         // console.log(token)
 
     } catch (error) {
-        console.error('Fetch Failed:', error.message);
+        swal({
+            title: "Error!",
+            text: `Failed to get cart: ${error.message}`,
+            icon: "error",
+            button: "OK",
+        });
+        // console.error('Fetch Failed:', error.message);
         document.getElementById('data-cart').innerHTML = 'Failed to load data.';
     }
 }
@@ -124,7 +140,7 @@ function RenderCart(cart) {
         <div class="card">
             <div>
                <h5>${cart.name}</h5>
-               <p>${cart.price}</p>
+               <p>${cart.price_idr}</p>
             </div>
             <div class="items-center">
                
