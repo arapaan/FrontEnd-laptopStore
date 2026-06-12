@@ -1,3 +1,41 @@
+(function() {
+    // console.log('Checking user session...');
+    const userSession = localStorage.getItem('jwt_token');
+    // console.log(userSession)
+
+    if (userSession == null) {
+        window.location.href = '/sarab/login.html';
+    }        
+
+    async function me() {
+        const token = localStorage.getItem('jwt_token');
+    
+        const api = await fetch('http://127.0.0.1:8000/api/auth/me', {
+            method: 'GET',
+            headers: {
+                'Authorization':  `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+    
+        if(!api.ok) {
+            const errorData = await api.json(); 
+            console.log('errorData: ', errorData)
+            throw new Error(errorData.message || 'An error occurred on the server');
+        }
+    
+        // get response
+        const { data } = await api.json();
+        console.log(data.roles[0].name)
+
+        if(data.roles[0].name != 'admin') {
+            window.location.href = 'index.html';
+        }
+    }
+
+    me();
+})();
+
 setTimeout(() => {
     // Delete Action
     const btnDl = document.querySelectorAll('.delete-product');
@@ -225,6 +263,7 @@ setTimeout(() => {
                     const price = document.getElementById('price').value;
                     const stock = document.getElementById('stock').value;
                     const file = document.getElementById('image').files[0];
+                    console.log('FileImage: ', file);
 
                     const formData = new FormData();
                     formData.append('name', name);                         
@@ -254,7 +293,7 @@ setTimeout(() => {
                     const { data } = await api.json()   
                     swal({
                         title: "Success!",
-                        text: "Product created successfully!",
+                        text: "Product updated successfully!",
                         icon: "success",
                         button: "OK",
                     })
@@ -319,12 +358,14 @@ const clickHandler = () => {
             console.log('masuk 3')
 
             if(!api.ok) {
-                throw new Error(`HTTP error! Status: ${api.status}`);
+                const errorData = await api.json(); 
+                console.log('errorData: ', errorData)
+                throw new Error(errorData.message || 'An error occurred on the server');
             }            
             console.log('masuk 4')
 
             const { data } = await api.json()            
-            console.log('masuk 5')
+            console.log('masuk 5', data)
             swal({
                 title: "Success!",
                 text: "Product created successfully!",
@@ -335,15 +376,13 @@ const clickHandler = () => {
                 window.location.href = 'index.html';
             });
         } catch (error) {   
+            console.log('masuk error', error)
             swal({
-                        title: "Error!",
-                        text: `Failed to create product: ${error.message}`,
-                        icon: "error",
-                        button: "OK",
-                    })
-                    .then(() => {
-                        window.location.href = 'index.html';
-                    });            
+                title: "Error!",
+                text: `Failed to create product: ${error.message}`,
+                icon: "error",
+                button: "OK",
+            })       
             console.error('Fetch Failed:', error.message);            
         }    
     }
