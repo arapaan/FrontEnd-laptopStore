@@ -823,7 +823,7 @@ table {
 }
 
 .circle {
-  z-index: 50;
+  z-index: 5;
   background-color: var(--primary);
   flex: 1 1 0%;
   bottom: 0;
