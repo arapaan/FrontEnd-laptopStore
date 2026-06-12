@@ -1,75 +1,75 @@
 const getProducts = "http://127.0.0.1:8000/api/product";
 const baseUrl = "http://127.0.0.1:8000";
 
-setTimeout(() => {
-    const btnAc = document.querySelectorAll('.edit-product');
-    btnEdit = ''; 
-    let elementId = null;
-        btnAc.forEach(ac => {
-            ac.addEventListener('click', (event) => {
-                elementId = event.currentTarget.dataset.id;
-                console.log('EventListenerId', elementId);
+// setTimeout(() => {
+//     const btnAc = document.querySelectorAll('.edit-product');
+//     btnEdit = ''; 
+//     let elementId = null;
+//         btnAc.forEach(ac => {
+//             ac.addEventListener('click', (event) => {
+//                 elementId = event.currentTarget.dataset.id;
+//                 console.log('EventListenerId', elementId);
 
-                // console.log('luar 1');
-                // async function showEdit() {
-                //     try {
-                //         console.log('masuk 1');
-                //         const token = localStorage.getItem('jwt_token');
-                //         console.log('masuk 2');
-                //         console.log(token)
-                //         console.log('masuk 4');
-                //         const api = await fetch(`http://127.0.0.1:8000/api/product/${elementId.toString()}`, {
-                //             method: 'GET',
-                //             headers: {
-                //                 'Content-Type': 'application/json',
-                //                 'Authorization':  `Bearer ${token}`
-                //             }
-                //         })
-                //         console.log('masuk 5');
+//                 console.log('luar 1');
+//                 async function showEdit() {
+//                     try {
+//                         console.log('masuk 1');
+//                         const token = localStorage.getItem('jwt_token');
+//                         console.log('masuk 2');
+//                         console.log(token)
+//                         console.log('masuk 4');
+//                         const api = await fetch(`http://127.0.0.1:8000/api/product/${elementId.toString()}`, {
+//                             method: 'GET',
+//                             headers: {
+//                                 'Content-Type': 'application/json',
+//                                 'Authorization':  `Bearer ${token}`
+//                             }
+//                         })
+//                         console.log('masuk 5');
 
-                //         if(!api.ok) {
-                //             throw new Error(`HTTP error! Status: ${api.status}`);            
-                //         }
-                //         console.log('masuk 6');
+//                         if(!api.ok) {
+//                             throw new Error(`HTTP error! Status: ${api.status}`);            
+//                         }
+//                         console.log('masuk 6');
 
-                //         const { data } = await api.json()                        
-                //         console.log('Sebelum render: ', data)
-                //         RenderEdit(data)
-                //     } catch (error) {
-                //         console.log('Fetch Failed', error.message);
-                //     }
-                // }
+//                         const { data } = await api.json()                        
+//                         console.log('Sebelum render: ', data)
+//                         RenderEdit(data)
+//                     } catch (error) {
+//                         console.log('Fetch Failed', error.message);
+//                     }
+//                 }
                 
-                console.log('luar 2');                
+//                 console.log('luar 2');                
                 
-            })
-        })
+//             })
+//         })
 
-        const btnSubmit = document.get
-            async function Edit() {
-                    try {
-                        const token = localStorage.getItem('jwt_token');
-                        console.log(token)
+//         const btnSubmit = document.get
+//             async function Edit() {
+//                     try {
+//                         const token = localStorage.getItem('jwt_token');
+//                         console.log(token)
                         
-                        const api = await fetch(`http://127.0.0.1:8000/api/product/${elementId}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization':  `Bearer ${token}`
-                            },
-                            body: JSON.stringify(elementId)                                                        
-                        })                        
+//                         const api = await fetch(`http://127.0.0.1:8000/api/product/${elementId}`, {
+//                             method: 'POST',
+//                             headers: {
+//                                 'Content-Type': 'application/json',
+//                                 'Authorization':  `Bearer ${token}`
+//                             },
+//                             body: JSON.stringify(elementId)                                                        
+//                         })                        
 
-                        if(!api.ok) {
-                            throw new Error(`HTTP error! Status: ${api.status}`);            
-                        }
+//                         if(!api.ok) {
+//                             throw new Error(`HTTP error! Status: ${api.status}`);            
+//                         }
 
-                        const { data }  = await api.json();
-                    } catch (error) {
-                        console.log('Fetch Failed', error.message);
-                    }
-                }
-}, 1500);
+//                         const { data }  = await api.json();
+//                     } catch (error) {
+//                         console.log('Fetch Failed', error.message);
+//                     }
+//                 }
+// }, 1500);
 
 async function getData() {
     try {
