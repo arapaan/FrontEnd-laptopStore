@@ -26,32 +26,34 @@
 
     cartId();
 
-    async function me() {
-        const token = localStorage.getItem('jwt_token');
-    
-        const api = await fetch('http://127.0.0.1:8000/api/auth/me', {
-            method: 'GET',
-            headers: {
-                'Authorization':  `Bearer ${token}`,
-                'Content-Type': 'application/json'
+    if(localStorage.getItem('jwt_token')) {
+        async function me() {
+            const token = localStorage.getItem('jwt_token');
+        
+            const api = await fetch('http://127.0.0.1:8000/api/auth/me', {
+                method: 'GET',
+                headers: {
+                    'Authorization':  `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+        
+            if(!api.ok) {
+                throw new Error(`HTTP error! Status: ${api.status}`);
             }
-        });
+        
+            // get response
+            const { data } = await api.json();
+            console.log(data.roles[0].name)
     
-        if(!api.ok) {
-            throw new Error(`HTTP error! Status: ${api.status}`);
+            if(data.roles[0].name != 'admin') {
+                const adminPage = document.getElementById('adminLink');
+                adminPage.style.display = 'none'
+            }
         }
     
-        // get response
-        const { data } = await api.json();
-        console.log(data.roles[0].name)
-
-        if(data.roles[0].name != 'admin') {
-            const adminPage = document.getElementById('adminLink');
-            adminPage.style.display = 'none'
-        }
+        me();
     }
-
-    me();
 
     const now = new Date();
     const formatDate = new Intl.DateTimeFormat('en-CA', {
